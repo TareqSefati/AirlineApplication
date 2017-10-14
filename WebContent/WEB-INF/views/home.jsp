@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-
-<%@page import="com.airline.models.Passenger"%>
-<%@page import="com.airline.models.Pilot"%>
-<%@page import="com.airline.models.Flight"%>
-<%@page import="java.util.List"%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -12,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Flights List</title>
+    <title>Airline::Home</title>
 
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -22,7 +17,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="${pageContext.request.contextPath}">Airline</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}">AirLine</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,7 +28,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/AirlineForm">Manage</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/AirlineForm">Manage App</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/Flights">Flights</a>
@@ -50,73 +45,40 @@
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="container">
-      <div class="jumbotron">
-      	<div >
-		    <div class="panel panel-default" style="margin-top: 20px">
-		      <div class="panel-heading">List of Passengers</div>
-		
-		      <div class="table-responsive">
-		        <table class="table table-striped">
-		          <tr>
-		            <th>ID</th>
-		            <th>First Name</th>
-		            <th>Last Name</th>
-		            <th>Date of Birth</th>
-		            <th>Gender</th>
-		
-		          </tr>
-		
-		          <%
-		            List<Passenger> pList = (List<Passenger>) request
-		                .getAttribute("passenger_list");
-		            for (int i = 0; i < pList.size(); i++) {
-		          %>
-		
-		          <tr>
-		            <td><%=pList.get(i).getId()%></td>
-		            <td><%=pList.get(i).getFirstName()%></td>
-		            <td><%=pList.get(i).getLastName()%></td>
-		            <td><%=pList.get(i).getDob()%></td>
-		            <td><%=pList.get(i).getGender()%></td>
-		          </tr>
-		
-		          <tr>
-		            <td colspan="5">
-		              <%
-		                if (pList.get(i).getFlights().size() > 0) {
-		                    List<Flight> fList = (List<Flight>) pList.get(i)
-		                        .getFlights();
-		                    for (int k = 0; k < fList.size(); k++) {
-		              %> <%=k + 1%>) <%=fList.get(k).getFlightOrigin()%> to <%=fList.get(k).getFlightDestination()%>
-		              @<%=fList.get(k).getFlightTime()%> <br> <%
-		  }//end forloop
-		    } else {
-		 %> No flight tickets yet. <%
-		  }
-		 %>
-		            </td>
-		          </tr>
-		
-		          <%
-		            }
-		          %>
-		
-		        </table>
-		      </div>
-		    </div>
-		  </div>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Travel All over The World!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
       </div>
-      
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Flights List</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/Flights" role="button">Show List &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Passengers List</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/Passengers" role="button">Show List &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Manage Application</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/AirlineForm" role="button">Proceed Action &raquo;</a></p>
+        </div>
+      </div>
+
       <hr>
 
       <footer>
         <p>&copy; Airline Application 2017</p>
       </footer>
-      
-    </div>
-
-    
+    </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
